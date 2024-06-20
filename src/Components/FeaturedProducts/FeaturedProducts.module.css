@@ -1,0 +1,62 @@
+.imgg {
+  height: 300px; /* يمكنك تعديل هذا الارتفاع حسب احتياجك */
+  object-fit: cover; /* تضمن أن الصورة تملأ الإطار بشكل مناسب */
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.rating-container i {
+  margin-right: 4px; /* تعديل المسافة بين النجمة والرقم إذا لزم الأمر */
+}
+
+.mr {
+  margin-bottom: 0rem !important;
+}
+
+.ov {
+  overflow: hidden;
+}
+
+.buton {
+  background-color: #65f186 !important;
+  opacity: 0 !important;
+  transition: opacity 1s ease-in-out !important;
+}
+
+.hov:hover .buton {
+  opacity: 1 !important;
+}
+
+.buton:hover {
+  background-color: white;
+  color: black;
+  border: #28a745 1px solid;
+}
+
+.hov {
+  transition: all 1s ease-in-out !important;
+  position: relative; /* Ensure relative positioning for absolute children */
+}
+
+.hov:hover {
+  border: 1px #28a745 solid !important;
+}
+
+.nodec {
+  text-decoration: none;
+  color: black;
+}
+
+.heartIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  color: red;
+  font-size: 24px;
+}
+

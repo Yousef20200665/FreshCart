@@ -1,0 +1,39 @@
+.foot {
+    
+    background-color: #f9f9f9;
+    width: 100%;
+}
+
+.appDownload,
+.paymentPartners,
+.deliveryLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.appDownload input {
+    margin-top: 10px;
+    padding: 5px;
+    width: 200px;
+}
+
+.appDownload button {
+    margin-top: 10px;
+    padding: 5px 10px;
+}
+
+.paymentPartners img,
+.deliveryLinks img {
+    margin: 5px;
+    height: 30px;
+}
+.bttn{
+    background-color: #28a745 !important;
+    color: white;
+    border: #28a745 solid 1px !important;
+}
+.bttn:hover{
+    background-color: #218838 !important;
+    border: black solid 1px !important;
+}
