@@ -15,9 +15,10 @@ import { Offline, Online } from "react-detect-offline";
 import CartContextProvider from './Context/CartContext'
 import BrandContextProvider, { BrandContext } from './Context/BrandContext'
 import SpecificBrand from './Components/SpecificBrand/SpecificBrand'
+import Categories from './Components/Categories/Categories'
 import WishList from './Components/WishList/WishList'
 import UserWishListProvider from './Context/WishList'
-
+import CategoriesContextProvider from './Context/CategoriesContext'
 export default function App() {
   let routers =createBrowserRouter([
     {path:'',element:<Layout/>, children:[
@@ -26,7 +27,7 @@ export default function App() {
       {path:'Home',element:<ProtectedRoute><Home/></ProtectedRoute>},
       {path:'brand',element:<ProtectedRoute><Brand/></ProtectedRoute>},
       {path:'WishList',element:<ProtectedRoute><WishList/></ProtectedRoute>},
-      {path:'Category',element:<ProtectedRoute><Category/></ProtectedRoute>},
+      {path:'Category',element:<ProtectedRoute><Categories/></ProtectedRoute>},
       {path:'Cart',element:<ProtectedRoute><Cart/></ProtectedRoute>},
       {path:'ProductDetails/:id',element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
       {path:'SpecificBrand/:id',element:<ProtectedRoute><SpecificBrand/></ProtectedRoute>},
@@ -34,16 +35,17 @@ export default function App() {
      
     ]}
   ])
-  
   return <><UserTokenProvider>
     <CartContextProvider>
       <BrandContextProvider>
       <UserWishListProvider>
+        <CategoriesContextProvider>
 
   <div>
     <Online><RouterProvider router={routers}></RouterProvider></Online>
     <Offline>Only shown offline (surprise!)</Offline>
   </div>
+  </CategoriesContextProvider>
   </UserWishListProvider>
   </BrandContextProvider>
   </CartContextProvider>

@@ -30,7 +30,7 @@ export default function Navbar() {
                         <>
                             <Link to={'/home'} className={`${style.deco} me-4 ms-4`}>Home</Link>
                             <Link to={'/cart'} className={`${style.deco} me-4`}>Cart</Link>
-                            <Link to={'/category'} className={`${style.deco} me-4`}>Categories</Link>
+                            <Link to={'/category'} className={`${style.deco} me-4`}>Category</Link>
                             <Link to={'/brand'} className={`${style.deco} me-4`}>Brands</Link>
                             <Link to={'/WishList'} className={`${style.deco} me-4`}>WishList</Link>
 
@@ -58,7 +58,7 @@ export default function Navbar() {
                     <>
                         <Link to={'/home'} className={style.deco} onClick={toggleMenu}>Home</Link>
                         <Link to={'/cart'} className={style.deco} onClick={toggleMenu}>Cart</Link>
-                        <Link to={'/category'} className={style.deco} onClick={toggleMenu}>Categories</Link>
+                        <Link to={'/category'} className={style.deco} onClick={toggleMenu}>Category</Link>
                         <Link to={'/brand'} className={style.deco} onClick={toggleMenu}>Brands</Link>
                         <Link to={'/WishList'} className={style.deco} onClick={toggleMenu}>ًWishList</Link>
                         <button onClick={() => { Logout(); toggleMenu(); }} className={`${style.deco} btn`}>Logout</button>

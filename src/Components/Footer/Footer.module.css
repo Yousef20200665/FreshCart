@@ -1,7 +1,8 @@
+/* Footer.module.css */
 .foot {
-    
     background-color: #f9f9f9;
     width: 100%;
+    padding: 20px 0;
 }
 
 .appDownload,
@@ -28,12 +29,31 @@
     margin: 5px;
     height: 30px;
 }
-.bttn{
+
+.bttn {
     background-color: #28a745 !important;
     color: white;
     border: #28a745 solid 1px !important;
 }
-.bttn:hover{
+
+.bttn:hover {
     background-color: #218838 !important;
     border: black solid 1px !important;
+}
+
+/* Ensure footer stays at the bottom when content is short */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
 }
