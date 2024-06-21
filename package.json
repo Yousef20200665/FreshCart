@@ -1,5 +1,5 @@
 {
-  "homepage":"http://yousef20200665.github.io/FreshCart",
+  "homepage": "http://yousef20200665.github.io/FreshCart",
   "name": "freshcart",
   "version": "0.1.0",
   "private": true,
@@ -15,6 +15,7 @@
     "react-detect-offline": "^2.4.5",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
+    "react-modal": "^3.16.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
@@ -25,8 +26,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeplo":"npm run build",
-    "deploy":"gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -- -f",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

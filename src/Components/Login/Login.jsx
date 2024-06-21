@@ -5,11 +5,17 @@ import axios from 'axios';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { UserTokenContext } from '../../Context/UserToken';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root'); // Set root element for accessibility
 
 export default function Login() {
-  const { userToken, setUserToken } = useContext(UserTokenContext);
+  const { setUserToken } = useContext(UserTokenContext);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetMessage, setResetMessage] = useState('');
 
   const validationSchema = yup.object({
     email: yup.string()
@@ -19,9 +25,21 @@ export default function Login() {
       .required('Password is required'),
   });
 
+  async function forgetPassword() {
+    try {
+      const response = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords', { email: resetEmail });
+      setResetMessage('If the email is registered, you will receive a reset link.');
+      setIsModalOpen(false);
+      navigate('/reset-password');  // Navigate to reset password page
+    } catch (error) {
+      console.error('Reset password error:', error);
+      setResetMessage('An error occurred. Please try again later.');
+    }
+  }
+
   async function Login(values) {
     try {
-      let { data } = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signin`, values);
+      let { data } = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin', values);
       if (data.message === 'success') {
         localStorage.setItem('userToken', data.token);
         setUserToken(data.token);
@@ -80,7 +98,36 @@ export default function Login() {
 
           <button type="submit">Login</button>
         </form>
+        <p onClick={() => setIsModalOpen(true)} className={`mt-5 text-center ${style.tx}`}>Forgot Password?</p>
       </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        contentLabel="Reset Password"
+        className={style.modal}
+        overlayClassName={style.overlay}
+      >
+        <h2>Reset Password</h2>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          forgetPassword();
+        }}>
+          <label>
+            Email:
+            <input
+            className='form-control'
+              type="email"
+              value={resetEmail}
+              onChange={(e) => setResetEmail(e.target.value)}
+              required
+            />
+          </label>
+          <button type="submit">Send Reset Link</button>
+        </form>
+        {resetMessage && <div className="alert alert-info">{resetMessage}</div>}
+        <button className={`${style.closeButton} mt-2`} onClick={() => setIsModalOpen(false)}>Close</button>
+      </Modal>
     </div>
   );
 }
