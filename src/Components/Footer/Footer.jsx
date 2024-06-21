@@ -12,7 +12,7 @@ export default function Footer() {
                         <input type="email" className="form-control" placeholder='Email..'/>
                     </div>
                     <div className="col-md-3">
-                        <button className={`${style.bttn} btn`}>Share App Link</button>
+                        <button className={`${style.bttn} btn text-white`}>Share App Link</button>
                     </div>
                 </div>
             </div>

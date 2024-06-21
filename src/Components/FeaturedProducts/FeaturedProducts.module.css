@@ -43,6 +43,7 @@
 
 .hov:hover {
   border: 1px #28a745 solid !important;
+  border-radius: 30px;
 }
 
 .nodec {

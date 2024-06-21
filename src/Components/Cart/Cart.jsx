@@ -2,15 +2,17 @@ import React, { useContext, useEffect, useState } from 'react'
 import style from './Cart.module.css'
 import { Helmet } from 'react-helmet'
 import { CartContext } from '../../Context/CartContext'
+import { Link } from 'react-router-dom'
 
 export default function Cart() {
-
+  const [idd, setid] = useState()
   const [response, setResponse] = useState([])
   let { getMyCart, DeleteCart, UpdateCount } = useContext(CartContext)
   
   async function myCart() {
     let { data } = await getMyCart()
     setResponse(data?.data.products || [])
+    setid(data.data._id)
   }
   
   async function Update(id, newCount) {
@@ -26,9 +28,11 @@ export default function Cart() {
   useEffect(() => {
     myCart()
   }, [])
-  
-  // حساب مجموع الأسعار
-  const totalCartPrice = response.reduce((acc, product) => acc + product.price * product.count, 0);
+
+  // Calculate total cart price
+  const totalCartPrice = response.reduce((acc, product) => acc + product.price * product.count, 0)
+
+  // Extract cart ID from response data (assuming it's in the response)
 
   return (
     <>
@@ -39,19 +43,19 @@ export default function Cart() {
       </Helmet>
       <div className={`${style.bgc} mt-3 container`}>
         <h3 className='ms-5 pt-5 mb-3'>Shop Cart:</h3>
-        <p className={`ms-5 h4 lead ${style.cl}`}>Total Cart Price :  EGP {totalCartPrice}</p>
+        <p className={`ms-5 h4 lead ${style.cl}`}>Total Cart Price: EGP {totalCartPrice}</p>
         <div className="row mt-5">
           {response.map(product => (
-            <div key={product.product.id} className={`col-md-4 d-flex justify-content-between w-100 mb-4`} >
+            <div key={product.product.id} className={`col-md-4 d-flex justify-content-between w-100 mb-4`}>
               <div className="images d-flex ms-4">
                 <img src={product.product.imageCover} alt={product.product.title} className={`${style.pic} me-3`} />
                 <div className="cont mt-4">
                   <h5>{product.product.title}</h5>
-                  <p className={` lead ${style.cl}`}>Price: {product.price}</p>
-                  <p onClick={() => Delete(product.product.id)} className={`  ${style.pointt}`}>
+                  <p className={`lead ${style.cl}`}>Price: {product.price}</p>
+                  <p onClick={() => Delete(product.product.id)} className={`${style.pointt}`}>
                     <i className={`fa-solid fa-trash ${style.cl} ${style.pointt}`}></i> Remove
                   </p>
-                </div>  
+                </div>
               </div>
               <div className="content d-flex align-items-center">
                 <p className={`me-3 fs-3 ${style.point}`} onClick={() => Update(product.product.id, product.count + 1)}>+</p>
@@ -61,6 +65,13 @@ export default function Cart() {
             </div>
           ))}
         </div>
+        
+          <div className="ms-4">
+            <Link to={`/CheckOut/${idd}`} className="btn btn-outline-danger ms-1">
+              Check Out
+            </Link>
+          </div>
+        
       </div>
     </>
   )

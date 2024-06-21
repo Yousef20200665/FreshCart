@@ -17,6 +17,7 @@ import BrandContextProvider, { BrandContext } from './Context/BrandContext'
 import SpecificBrand from './Components/SpecificBrand/SpecificBrand'
 import Categories from './Components/Categories/Categories'
 import WishList from './Components/WishList/WishList'
+import CheckOut from './Components/CheckOut/CheckOut'
 import UserWishListProvider from './Context/WishList'
 import CategoriesContextProvider from './Context/CategoriesContext'
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
       {path:'Cart',element:<ProtectedRoute><Cart/></ProtectedRoute>},
       {path:'ProductDetails/:id',element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
       {path:'SpecificBrand/:id',element:<ProtectedRoute><SpecificBrand/></ProtectedRoute>},
+      {path:'CheckOut/:id',element:<ProtectedRoute><CheckOut/></ProtectedRoute>},
       {path:'*',element:<ProtectedRoute><Notfound/></ProtectedRoute>},
      
     ]}

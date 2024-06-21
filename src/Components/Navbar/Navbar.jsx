@@ -46,7 +46,7 @@ export default function Navbar() {
                 ) : (
                     <>
                         <Link to={'/login'} className={`${style.deco} me-4`}>Login</Link>
-                        <Link to={'/register'} className={`${style.deco} `}>Register</Link>
+                        <Link to={''} className={`${style.deco} `}>Register</Link>
                     </>
                 )}
             </div>
