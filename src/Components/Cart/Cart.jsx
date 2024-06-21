@@ -12,7 +12,7 @@ export default function Cart() {
   async function myCart() {
     let { data } = await getMyCart()
     setResponse(data?.data.products || [])
-    setid(data.data._id)
+    setid(data?.data._id)
   }
   
   async function Update(id, newCount) {

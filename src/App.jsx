@@ -20,15 +20,18 @@ import WishList from './Components/WishList/WishList'
 import CheckOut from './Components/CheckOut/CheckOut'
 import UserWishListProvider from './Context/WishList'
 import CategoriesContextProvider from './Context/CategoriesContext'
+import PasswordReset from './Components/PasswordReset/PasswordReset'
+import UnProtected from './Components/UnProtected/UnProtected'
 export default function App() {
   let routers =createBrowserRouter([
     {path:'',element:<Layout/>, children:[
-      {index:true,element:<Register/>},
-      {path:'Login',element:<Login/>},
+      {index:true,element:<UnProtected><Register/></UnProtected>},
+      {path:'Login',element:<UnProtected><Login/></UnProtected>},
       {path:'Home',element:<ProtectedRoute><Home/></ProtectedRoute>},
       {path:'brand',element:<ProtectedRoute><Brand/></ProtectedRoute>},
       {path:'WishList',element:<ProtectedRoute><WishList/></ProtectedRoute>},
       {path:'Category',element:<ProtectedRoute><Categories/></ProtectedRoute>},
+      {path:'reset-password',element:<UnProtected><PasswordReset/></UnProtected>},
       {path:'Cart',element:<ProtectedRoute><Cart/></ProtectedRoute>},
       {path:'ProductDetails/:id',element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
       {path:'SpecificBrand/:id',element:<ProtectedRoute><SpecificBrand/></ProtectedRoute>},
